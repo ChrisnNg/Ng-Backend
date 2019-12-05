@@ -6,6 +6,11 @@ const app = express();
 
 var transport = {
   host: "smtp-mail.outlook.com",
+  secureConnection: false, // TLS requires secureConnection to be false
+  port: 587, // port for secure SMTP
+  tls: {
+    ciphers: "SSLv3"
+  },
   auth: {
     user: process.env.API_EMAIL,
     pass: process.env.API_PASSWORD
