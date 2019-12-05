@@ -5,8 +5,7 @@ var bodyParser = require("body-parser");
 const app = express();
 
 var transport = {
-  name: "www.ng-mails.herokuapp.com",
-  service: "hotmail",
+  host: "smtp.gmail.com",
   auth: {
     user: process.env.API_EMAIL,
     pass: process.env.API_PASSWORD
@@ -44,7 +43,7 @@ app.post("/send", (req, res) => {
 
   var mail = {
     from: process.env.API_EMAIL,
-    to: process.env.API_EMAIL, //Change to email address that you want to receive messages on
+    to: "cristopherng@hotmail.com", //Change to email address that you want to receive messages on
     subject: "Portfolio Mailbot",
     text: content
   };
