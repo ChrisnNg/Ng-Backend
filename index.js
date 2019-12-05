@@ -42,8 +42,8 @@ app.post("/send", (req, res) => {
   let content = `name: ${name} \n email: ${email} \n message: ${message} `;
 
   var mail = {
-    from: name,
-    to: "cristopherng@hotmail.com", //Change to email address that you want to receive messages on
+    from: process.env.API_EMAIL,
+    to: process.env.API_EMAIL, //Change to email address that you want to receive messages on
     subject: "Portfolio Mailbot",
     text: content
   };
