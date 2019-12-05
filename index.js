@@ -36,16 +36,15 @@ app.use(function(req, res, next) {
 
 // An api endpoint that returns a short list of items
 app.post("/send", (req, res) => {
-  var list = ["item1", "item2", "item3"];
-  var name = req.body.name;
-  var email = req.body.email;
-  var message = req.body.message;
-  var content = `name: ${name} \n email: ${email} \n message: ${content} `;
+  let name = req.body.name;
+  let email = req.body.email;
+  let message = req.body.message;
+  let content = `name: ${name} \n email: ${email} \n message: ${message} `;
 
   var mail = {
     from: name,
     to: "cristopherng@hotmail.com", //Change to email address that you want to receive messages on
-    subject: "New Message from Contact Form",
+    subject: "Portfolio Mailbot",
     text: content
   };
 
@@ -60,9 +59,6 @@ app.post("/send", (req, res) => {
       });
     }
   });
-
-  console.log("Sent list of items");
-  console.log(req.body);
 });
 
 // Handles any requests that don't match the ones above
