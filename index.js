@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 const app = express();
 
 var transport = {
-  host: "smtp.gmail.com",
+  host: "smtp-mail.outlook.com",
   auth: {
     user: process.env.API_EMAIL,
     pass: process.env.API_PASSWORD
@@ -62,7 +62,7 @@ app.post("/send", (req, res) => {
 });
 
 app.get("/send", (req, res) => {
-  res.send("testing environment", process.env.API_TEST);
+  res.send("this is a get request. send a post request to this page to mail.");
 });
 
 // Handles any requests that don't match the ones above

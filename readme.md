@@ -5,7 +5,7 @@ A barebones backend created with express for my [portfolio site's](https://chris
 ```
 npm install
 ```
-2. Creating your own .env using the .env.example and filling it with your Gmail account information.
+2. Creating your own .env using the .env.example and filling it with your outlook/hotmail account information.
 
 3. You can then hook it up to the front-end which handles posting the required information needed to compose the email. View how I connected it [here](https://github.com/ChrisnNg/Ng/blob/master/src/components/Modal.js)
 
