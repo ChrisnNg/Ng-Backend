@@ -5,7 +5,7 @@ var bodyParser = require("body-parser");
 const app = express();
 
 var transport = {
-  name: "NgPortfolio",
+  name: "www.ng-mails.herokuapp.com",
   service: "hotmail",
   secureConnection: false, // TLS requires secureConnection to be false
   port: 587, // port for secure SMTP
