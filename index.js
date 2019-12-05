@@ -61,6 +61,10 @@ app.post("/send", (req, res) => {
   });
 });
 
+app.get("/send", (req, res) => {
+  res.send("testing environment", process.env.API_TEST);
+});
+
 // Handles any requests that don't match the ones above
 app.get("*", (req, res) => {
   res.send("unknown url");
