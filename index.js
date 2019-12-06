@@ -2,23 +2,32 @@ if (process.env.NODE_ENV !== "production") require("dotenv").config();
 const express = require("express");
 var nodemailer = require("nodemailer");
 var bodyParser = require("body-parser");
+const { google } = require("googleapis");
+const OAuth2 = google.auth.OAuth2;
+
 const app = express();
 
-var transport = {
-  host: "smtp.gmail.com",
+const oauth2Client = new OAuth2(
+  process.env.CLIENT_ID, // ClientID
+  process.env.CLIENT_SECRET, // Client Secret
+  "https://developers.google.com/oauthplayground" // Redirect URL
+);
+
+oauth2Client.setCredentials({
+  refresh_token: process.env.REFRESH_TOKEN
+});
+
+const accessToken = oauth2Client.getAccessToken();
+
+const smtpTransport = nodemailer.createTransport({
+  service: "gmail",
   auth: {
+    type: "OAuth2",
     user: process.env.API_EMAIL,
-    pass: process.env.API_PASSWORD
-  }
-};
-
-var transporter = nodemailer.createTransport(transport);
-
-transporter.verify((error, success) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Server is ready to take messages");
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    refreshToken: process.env.REFRESH_TOKEN,
+    accessToken: accessToken
   }
 });
 
@@ -48,7 +57,7 @@ app.post("/send", (req, res) => {
     text: content
   };
 
-  transporter.sendMail(mail, (err, data) => {
+  smtpTransport.sendMail(mail, (err, data) => {
     if (err) {
       res.json({
         msg: "fail"
